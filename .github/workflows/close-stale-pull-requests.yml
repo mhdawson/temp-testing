@@ -65,9 +65,9 @@ jobs:
           only-labels: test-stale-pr
           days-before-stale: 0
           days-before-close: 0
-          stale-issue-label: stale
-          close-issue-message: ${{ env.CLOSE_MESSAGE }}
-          stale-issue-message: ${{ env.WARN_MESSAGE }}
+          stale-pr-label: stale
+          close-pr-message: ${{ env.CLOSE_MESSAGE }}
+          stale-pr-message: ${{ env.WARN_MESSAGE }}
           exempt-pr-labels: never-stale
           # max requests it will send per run to the GitHub API before it deliberately exits to avoid hitting API rate limits
           operations-per-run: 500
