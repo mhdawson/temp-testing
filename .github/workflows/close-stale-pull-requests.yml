@@ -2,7 +2,7 @@ name: Close stale feature requests
 on:
   workflow_dispatch:
     inputs:
-        endDate:
+      endDate:
         description: stop procesing PRs after this date
         required: false
         type: string 
