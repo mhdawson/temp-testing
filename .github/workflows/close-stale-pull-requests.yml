@@ -48,16 +48,13 @@ jobs:
     if: github.repository == 'mhdawson/temp-testing'
     runs-on: ubuntu-latest
     steps:
-      - name: Get date 1 year ago
-        id: dateYearAgo
-        run: echo "::set-output name=date::$(date --date='525600 minutes ago' --rfc-2822)"
-      - name: set default end date
-        env:
-          END_DATE: ${{ steps.dateYearAgo.outputs.date }} 
+      - name: Set default end date which is 1 year ago
+        run: echo "::set-env name=END_DATE::$(date --date='525600 minutes ago' --rfc-2822)"
       - name: if date set in event override the default end date
-        if: "${{ github.event.inputs.endDate != '' }}"
         env:
-          END_DATE: #{{ inputs.endDate }} 
+          END_DATE_INPUT_VALUE: ${{ github.event.inputs.endDate }}
+        if: "${{ github.event.inputs.endDate != '' }}"
+        run: echo "::set-env name=END_DATE::$(END_DATE_INPUT_VALUE)"
 #      - uses: actions/stale@1160a2240286f5da8ec72b1c0816ce2481aabf84  # v8.0.0
       - uses: mhdawson/stale@453d6581568dc43dbe345757f24408d7b451c651  # PR to add support for endDate
         with:
